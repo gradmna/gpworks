@@ -6,7 +6,6 @@ to startup {
   fetchProject
   openProjectEditor false false
   fixLayout
-  hide (stage (findProjectEditor))
 
 // test
 // while true { waitMSecs 10 }
