@@ -298,7 +298,7 @@ method installTranslation AuthoringSpecs translationData {
 method initialSpecs AuthoringSpecs {
   return (array
 	'Control'
-	  (array ' ' 'animate'				'forever _' 'cmd')
+	  (array ' ' 'animate'				'animate _' 'cmd')
 	  (array ' ' 'if'					'if _ _ : else if _ _ : ...' 'bool cmd bool cmd')
 	  (array ' ' 'repeat'				'repeat _ _' 'num cmd' 10)
 	  (array ' ' 'waitSecs'				'wait : _ seconds' 'num' 0.1)
