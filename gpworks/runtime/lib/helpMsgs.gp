@@ -22,15 +22,22 @@ to getHelp blk { // idk why this has so much compatability lmfao
   initializeForConfirm p 'Help' rep4 'OK' ''
   myCat = (call (function a {
     cats = (categories (scripter (findProjectEditor))) // i wish cats were real
-    specs = (initialSpecs (authoringSpecs))
-    openExplorer specs
+    specs = (toList (initialSpecs (authoringSpecs)))
+    // openExplorer specs
     blkArr = (list)
     cnt = 1
     for c cats {
-      
+      sliceTo = (at cats (+ c 1))
+      if (isNil sliceTo) {
+        
+      } true {
+        sliceTo = (indexOf specs sliceTo)
+      }
+      currBlks = (copyFromTo specs (+ (indexOf specs c) 1) )
       cnt += 1
     }
-    blks = (new 'Dictionary' (count cats) cats )
+    openExplorer currBlks
+    blks = (new 'Dictionary' (count cats) cats blkArr)
     openExplorer blks
   }) blk)
   btns = (parts (getField p 'buttons'))
