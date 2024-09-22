@@ -639,3 +639,9 @@ to tinyBenchmarks {
 to nop { noop }
 to ignore args... { noop }
 to id obj { return obj }
+
+// gpworks functions
+
+to canStringify obj {
+  return (contains (map 'functionName' (methods (classOf obj))) 'toString')
+}

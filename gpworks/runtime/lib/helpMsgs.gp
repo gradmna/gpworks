@@ -5,6 +5,9 @@ to getHelp blk {
   if (isClass blk 'Function') {blk = (getField blk 'cmdList')}
   if (isClass blk 'Command') {blk = (getField blk 'primName')} // either comes from turned to Function `blk` or just as a unparsed arg
   if (isClass blk 'Action') {blk = (getField blk 'function')}
-  if (not (isClass blk 'String')) {error 'unsupported type'}
+  if (not (isClass blk 'String')) {
+    if (not (canStringify blk)) {error 'unsupported and/or unstringifiable type'}
+    blk = (toString blk)
+  }
   return blk
 }
