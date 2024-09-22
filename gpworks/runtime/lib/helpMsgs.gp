@@ -28,7 +28,7 @@ to getHelp blk { // idk why this has so much compatability lmfao
     }
     return didLoop // smart ass
   }) (parts (morph p)))
-  delete (last (parts btns))
+  removePart (last (parts btns)) btns
   addPart (morph (global 'page')) (morph p)
   return req
 }

@@ -4,7 +4,7 @@ to startup {
   gc
   print (mem)
   fetchProject
-  openProjectEditor false false
+  openProjectEditor false true
 
 // test
 // while true { waitMSecs 10 }
