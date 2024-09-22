@@ -20,8 +20,9 @@ to getHelp blk { // idk why this has so much compatability lmfao
   h = (hand (global 'page'))
   rep4 = 'REPLACE ME'
   initializeForConfirm p 'Help' rep4 'OK' ''
-  myCol = (blockColorForOp (authoringSpecs) blk)
-  blkMrph = (block 'command' '')
+  blkMrph = (block 'command' (blockColorForOp (authoringSpecs) blk) blk)
+  openExplorer (takeSnapshot blkMrph)
+  openExplorer p
   btns = (parts (getField p 'buttons'))
   hide (at btns (count btns))
   btns = (getField p 'buttons')
