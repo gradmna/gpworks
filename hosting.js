@@ -76,7 +76,7 @@ app.get("/mtime/", async function(req, res) {
     return b
 	}
   res.header("content-type", "text/plain")
-	res.send((await work("gpworks/runtime/lib", new Date(0))).getTime().toString())
+	res.send((await work("gpworks/runtime/lib", new Date(0))).getTime().toUTCString())
 })
 
 app.get("/help.json", function(req, res) {
