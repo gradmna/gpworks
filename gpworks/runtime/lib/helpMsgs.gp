@@ -18,17 +18,9 @@ to getHelp blk { // idk why this has so much compatability lmfao
   req = (startFetch (join './help.json?blk=' blk))
   p = (new 'Prompter')
   initializeForConfirm p '1' '2' 'OK' ''
-  btns = (detect (function a {
-    didLoop = false
-    for ch (parts a) {
-      didLoop = true
-      if (!= (className (classOf (handler ch))) 'Trigger') {
-        return false
-      }
-    }
-    return didLoop // smart ass
-  }) (parts (morph p)))
-  removePart (last (parts btns)) btns
+  btns = (parts (getField p 'buttons'))
+  removeAt btns (count btns)
+  redraw p
   addPart (morph (global 'page')) (morph p)
   return req
 }
