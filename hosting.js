@@ -1,4 +1,5 @@
 rmFS = require("./rmFS.js")
+helpObj = require("./help.js")
 request = require("request")
 express = require("express")
 JSZip = require("jszip")
@@ -58,6 +59,11 @@ app.get("/gp_wasm.wasm", async function(req, res) {
 app.get("/gpworks.zip", async function(req, res) {
 	res.header("content-type", "application/zip")
 	res.send(await dir2Zip("gpworks"))
+})
+
+app.get("/help.json", function(req, res) {
+  res.header("content-type", "application/json")
+  
 })
 
 app.listen(8080)

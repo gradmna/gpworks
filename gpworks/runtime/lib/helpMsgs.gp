@@ -16,6 +16,6 @@ to getHelp blk { // idk why this has so much compatability lmfao
     if (not (canStringify blk)) {error 'unsupported and/or unstringifiable type'}
     blk = (toString blk)
   }
-  
-  return blk
+  req = (startFetch (join './help.json?blk=' blk))
+  return req
 }
