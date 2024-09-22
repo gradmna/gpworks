@@ -809,6 +809,9 @@ method contextMenu Block {
   }
   addItem menu 'copy to clipboard' 'copyToClipboard'
   addItem menu 'export as image' 'exportAsImage'
+  if isInPalette {
+    addItem menu 'help...' 'getHelp'
+  }
   addLine menu
   addItem menu 'show definition...' 'showDefinition'
   addLine menu
