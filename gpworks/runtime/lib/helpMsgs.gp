@@ -23,7 +23,15 @@ to getHelp blk { // idk why this has so much compatability lmfao
   myCat = (call (function a {
     cats = (categories (scripter (findProjectEditor))) // i wish cats were real
     specs = (initialSpecs (authoringSpecs))
-    blks = (new 'Dictionary' (count cats) cats ())
+    openExplorer specs
+    blkArr = (list)
+    cnt = 1
+    for c cats {
+      
+      cnt += 1
+    }
+    blks = (new 'Dictionary' (count cats) cats )
+    openExplorer blks
   }) blk)
   btns = (parts (getField p 'buttons'))
   hide (at btns (count btns))
