@@ -27,18 +27,22 @@ to getHelp blk { // idk why this has so much compatability lmfao
     blkArr = (list)
     cnt = 1
     for c cats {
-      sliceTo = (at cats (+ c 1))
-      if (isNil sliceTo) {
-        
+      sliceFrom = (indexOf specs c)
+      sliceFrom += 1
+      if (== cnt (count cats)) {
+        sliceTo = nil
       } true {
-        sliceTo = (indexOf specs sliceTo)
+        sliceTo = (indexOf specs (at cats (+ cnt 1)))
+        sliceTo += -1
       }
-      currBlks = (copyFromTo specs (+ (indexOf specs c) 1) )
+      if (not (contains (map 'isNil' (list sliceFrom sliceTo)) true)) {
+        currBlks = (copyFromTo specs sliceFrom sliceTo)
+      }
       cnt += 1
     }
     openExplorer currBlks
     blks = (new 'Dictionary' (count cats) cats blkArr)
-    openExplorer blks
+    // openExplorer blks
   }) blk)
   btns = (parts (getField p 'buttons'))
   hide (at btns (count btns))
