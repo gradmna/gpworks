@@ -19,7 +19,10 @@ to getHelp blk { // idk why this has so much compatability lmfao
   req = (startFetch (join './help.json?blk=' blk))
   p = (new 'Prompter')
   initializeForConfirm p '1' '2' 'OK' ''
-  openExplorer (parts (morph p))
+  openExplorer (detect (function a {
+    res = (list)
+    
+  }) (parts (morph p)))
   addPart (morph (global 'page')) (morph p)
   return req
 }
