@@ -2,9 +2,12 @@ to startup {
   if (isNil (detect (function a {return (== (functionName a) 'is404')}) (functions))) {
     my404 = (function {return false})
     setField my404 'functionName' 'is404'
-    fns = (functions)
+    fns = (toList (functions))
     add fns my404
-    setField tlm 'functions' fns // just in case
+    setField (topLevelModule) 'functions' (toArray fns)
+    if (isNil (detect (function a {return (== (functionName a) 'is404')}) (functions))) {
+      error 'bruh wtf'
+    }
   }
   print 'Starting GP...'
   setGlobal 'vectorTrails' false
