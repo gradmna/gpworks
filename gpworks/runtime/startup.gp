@@ -5,7 +5,6 @@ to startup {
   print (mem)
   fetchProject
   openProjectEditor false false
-  fixLayout
 
 // test
 // while true { waitMSecs 10 }

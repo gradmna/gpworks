@@ -62,7 +62,9 @@ to openProjectEditor tryRetina devMode {
   developerModeChanged editor
   if goFlag { enterPresentation editor }
   startSteppingSafely page goFlag
-  normalStageSize
+  hide (morph (getField (findProjectEditor) 'stage'))
+  hide (morph (getField (findProjectEditor) 'spritelibrary'))
+  setField (global 'page') 'color' (transparent)
 }
 
 to findProjectEditor {
