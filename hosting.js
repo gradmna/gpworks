@@ -24,7 +24,7 @@ async function dir2Zip(a) {
 		}
 	}
 	await work(a, zip)
-	return await zip.generateAsync({type: "nodebuffer"})
+	return zip
 }
 
 app.use(express.static("static"))
@@ -58,10 +58,12 @@ app.get("/gp_wasm.wasm", async function(req, res) {
 
 app.get("/gpworks.zip", async function(req, res) {
 	res.header("content-type", "application/zip")
-	res.send(await dir2Zip("gpworks"))
+	var zip = await dir2Zip("gpworks")
+  zip.file("mtime.txt", (await getMTimeFor("gpworks/runtime/lib")).toUTCString())
+  res.send(await zip.generateAsync({type: "nodebuffer"}))
 })
 
-app.get("/mtime/", async function(req, res) {
+async function getMTimeFor(a) {
 	async function work(a, b) {
 		var c = await afs.readdir(a)
 		for (var d of c) {
@@ -75,9 +77,15 @@ app.get("/mtime/", async function(req, res) {
 		}
     return b
 	}
-  res.header("content-type", "text/plain")
-	res.send((await work("gpworks/runtime/lib", new Date(0))).getTime().toUTCString())
-})
+  return await work(a, new Date(0))
+}
+
+/*
+  app.get("/mtime/", async function(req, res) {
+    res.header("content-type", "text/plain")
+    res.send((await getMTimeFor("gpworks/runtime/lib")).toUTCString())
+  })
+*/
 
 app.get("/help.json", function(req, res) {
   res.header("content-type", "application/json")

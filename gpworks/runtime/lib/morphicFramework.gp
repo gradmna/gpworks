@@ -1119,7 +1119,7 @@ method contextMenu Page {
 }
 
 method showGPVersion Page {
-  inform this (join 'gpworks modified since ' (libraryVersion) (newline) (at (version) 1))
+  inform this (join 'gpworks modified since ' (readFile '/mtime.txt') (newline) (at (version) 1))
 }
 
 method broadcastGo Page { stopAll this; broadcast 'go' }

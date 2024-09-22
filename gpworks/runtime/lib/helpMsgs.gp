@@ -18,9 +18,10 @@ to getHelp blk { // idk why this has so much compatability lmfao
   req = (startFetch (join './help.json?blk=' blk))
   p = (new 'Prompter')
   h = (hand (global 'page'))
-  initializeForConfirm p 'Help' 'REPLACE ME' 'OK' ''
+  rep4 = 'REPLACE ME'
+  initializeForConfirm p 'Help' rep4 'OK' ''
   btns = (parts (getField p 'buttons'))
-  removeAt btns (count btns)
+  hide (at btns (count btns))
   btns = (getField p 'buttons')
   setBounds btns (copy (fullBounds (first (parts btns))))
   redraw p
