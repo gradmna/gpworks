@@ -18,17 +18,17 @@ to getHelp blk { // idk why this has so much compatability lmfao
   req = (startFetch (join './help.json?blk=' blk))
   p = (new 'Prompter')
   initializeForConfirm p '1' '2' 'OK' ''
-  openExplorer (detect (function a {
+  btns = (detect (function a {
     didLoop = false
     for ch (parts a) {
       didLoop = true
-      openExplorer (handler ch)
       if (!= (className (classOf (handler ch))) 'Trigger') {
         return false
       }
     }
     return didLoop // smart ass
   }) (parts (morph p)))
+  delete (last (parts btns))
   addPart (morph (global 'page')) (morph p)
   return req
 }
