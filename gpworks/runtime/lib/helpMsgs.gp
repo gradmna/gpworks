@@ -22,8 +22,8 @@ to getHelp blk { // idk why this has so much compatability lmfao
     didLoop = false
     for ch (parts a) {
       didLoop = true
-      openExplorer ch
-      if (!= (getField 'handler' ch) 'Trigger') {
+      openExplorer (handler ch)
+      if (!= (className (classOf (handler ch))) 'Trigger') {
         return false
       }
     }
