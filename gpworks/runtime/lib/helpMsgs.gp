@@ -17,10 +17,14 @@ to getHelp blk { // idk why this has so much compatability lmfao
   }
   req = (startFetch (join './help.json?blk=' blk))
   p = (new 'Prompter')
-  initializeForConfirm p '1' '2' 'OK' ''
+  h = (hand (global 'page'))
+  initializeForConfirm p 'Help' 'REPLACE ME' 'OK' ''
   btns = (parts (getField p 'buttons'))
   removeAt btns (count btns)
+  btns = (getField p 'buttons')
+  setBounds btns (copy (fullBounds (first (parts btns))))
   redraw p
+  setCenter (morph p) (x h) (y h)
   addPart (morph (global 'page')) (morph p)
   return req
 }
