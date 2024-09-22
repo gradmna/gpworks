@@ -27,6 +27,7 @@ async function dir2Zip(a) {
 }
 
 app.use(express.static("static"))
+app.use("/examples/", express.static(`${__dirname}/gpworks/Examples`))
 
 app.get("/emModule.js", async function(req, res) {
 	var resp = (await (require("util").promisify(request))("https://gpblocks.org/run/emModule.js", {encoding: null}))

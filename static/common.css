@@ -1,0 +1,39 @@
+.shadowRealm {display: none;}
+
+* {
+  -ms-interpolation-mode: nearest-neighbor;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -o-pixelated;
+  image-rendering: pixelated;
+}
+
+html {font-size: 11px;}
+
+body {
+  margin: 0;
+  font: bold 1rem Arial;
+  text-shadow: 0 0 CurrentColor; /* give it that crispy gp style */
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+html, body {height: 100%;}
+
+span#status {
+  font-size: 1rem;
+  width: calc(100vw - 8px);
+  position: absolute;
+  left: 8px;
+  top: 8px;
+}
+
+body:not(.showFrm) > iframe#frm {
+  display: none;
+}
+
+body > iframe#frm {
+  position: absolute;
+  border: 0;
+  z-index: -1;
+}
