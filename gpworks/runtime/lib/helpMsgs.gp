@@ -2,7 +2,6 @@
 
 to getHelp blk { // idk why this has so much compatability lmfao
   if ((platform) != 'Browser') {error 'TODO (prob useless tho)'} // bcuz who would run gpworks locally
-  openExplorer blk
   if (isClass blk 'Block') {blk = (getField blk 'expression')}
   if (isClass blk 'Function') {blk = (getField blk 'cmdList')}
   if (or (isClass blk 'Command') (isClass blk 'Commmand')) {
@@ -20,8 +19,15 @@ to getHelp blk { // idk why this has so much compatability lmfao
   p = (new 'Prompter')
   initializeForConfirm p '1' '2' 'OK' ''
   openExplorer (detect (function a {
-    res = (list)
-    
+    didLoop = false
+    for ch (parts a) {
+      didLoop = true
+      openExplorer ch
+      if (!= (getField 'handler' ch) 'Trigger') {
+        return false
+      }
+    }
+    return didLoop // smart ass
   }) (parts (morph p)))
   addPart (morph (global 'page')) (morph p)
   return req
