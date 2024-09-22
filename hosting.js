@@ -63,7 +63,7 @@ app.get("/gpworks.zip", async function(req, res) {
 
 app.get("/help.json", function(req, res) {
   res.header("content-type", "application/json")
-  
+  res.send({msg: "idfk"})
 })
 
 app.listen(8080)
