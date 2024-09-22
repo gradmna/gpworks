@@ -61,6 +61,31 @@ app.get("/gpworks.zip", async function(req, res) {
 	res.send(await dir2Zip("gpworks"))
 })
 
+/*
+async function(req, res) {
+	var res = new Date(0)
+	async function work(a, b) {
+		var c = await afs.readdir(a)
+		for (var d of c) {
+			var e = require("path").join(a, d)
+			var f = await afs.stat(e)
+			if (f.isDirectory()) {
+				var subfolder = b.folder(d)
+				await work(e, subfolder)
+			} else {
+				b.file(d, await afs.readFile(e))
+			}
+		}
+	}
+	await work(a, zip)
+	res.send()
+}
+*/
+
+app.get("/mtime/", async function(req, res) {
+  res.send(0)
+})
+
 app.get("/help.json", function(req, res) {
   res.header("content-type", "application/json")
   res.send({msg: "idfk"})

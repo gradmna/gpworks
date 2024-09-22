@@ -1,14 +1,16 @@
 to startup {
-  if (isNil (detect (function a {return (== (functionName a) 'is404')}) (functions))) {
-    my404 = (function {return false})
-    setField my404 'functionName' 'is404'
-    fns = (toList (functions))
-    add fns my404
-    setField (topLevelModule) 'functions' (toArray fns)
-    if (isNil (detect (function a {return (== (functionName a) 'is404')}) (functions))) {
-      error 'bruh wtf'
-    }
-  }
+  // cancelled 404 page in gp
+  // canDef404 = (function {return (isNil (detect (function a {return (== (functionName a) 'is404')}) (functions)))})
+  // if (call canDef404) {
+  //   my404 = (function {return false})
+  //   setField my404 'functionName' 'is404'
+  //   fns = (toList (functions))
+  //   add fns my404
+  //   setField (topLevelModule) 'functions' (toArray fns)
+  //   if (call canDef404) {
+  //     error 'bruh wtf'
+  //   }
+  // }
   print 'Starting GP...'
   setGlobal 'vectorTrails' false
   gc
