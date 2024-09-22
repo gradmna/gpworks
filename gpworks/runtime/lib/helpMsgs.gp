@@ -21,9 +21,9 @@ to getHelp blk { // idk why this has so much compatability lmfao
   rep4 = 'REPLACE ME'
   initializeForConfirm p 'Help' rep4 'OK' ''
   myCat = (call (function a {
-    cats = (categories (scripter (findProjectEditor)))
+    cats = (categories (scripter (findProjectEditor))) // i wish cats were real
     specs = (initialSpecs (authoringSpecs))
-    
+    blks = (new 'Dictionary' (count cats) cats ())
   }) blk)
   btns = (parts (getField p 'buttons'))
   hide (at btns (count btns))
