@@ -20,7 +20,11 @@ to getHelp blk { // idk why this has so much compatability lmfao
   h = (hand (global 'page'))
   rep4 = 'REPLACE ME'
   initializeForConfirm p 'Help' rep4 'OK' ''
-  
+  myCat = (call (function a {
+    cats = (categories (scripter (findProjectEditor)))
+    specs = (initialSpecs (authoringSpecs))
+    
+  }) blk)
   btns = (parts (getField p 'buttons'))
   hide (at btns (count btns))
   btns = (getField p 'buttons')
