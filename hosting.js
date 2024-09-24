@@ -6,6 +6,7 @@ JSZip = require("jszip")
 fs = require("fs")
 afs = fs.promises
 markdownit = require("markdown-it")
+void({JSDOM} = require("jsdom"))
 
 app = express()
 
@@ -30,6 +31,9 @@ async function dir2Zip(a) {
 
 app.use(express.static("static"))
 app.use("/examples/", express.static(`${__dirname}/gpworks/Examples`))
+
+app.set("view engine", "ejs")
+app.set("views", ".")
 
 app.get("/emModule.js", async function(req, res) {
 	var resp = (await (require("util").promisify(request))("https://gpblocks.org/run/emModule.js", {encoding: null}))
@@ -83,7 +87,9 @@ async function getMTimeFor(a) {
 
 app.get("/README.html", async function(req, res) {
   res.header("content-type", "text/html")
-  res.send(markdownit().render(await afs.readFile("README.md", "utf8")))
+  var html = markdownit().render(await afs.readFile("README.md", "utf8"))
+  var title = new JSDOM(html).window.document.querySelector("body > h1:first-of-type").textContent
+  res.render("temp", {html, title})
 })
 
 /*
