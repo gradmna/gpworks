@@ -12,10 +12,9 @@ html {font-size: 11px;}
 
 body {
   margin: 0;
-  font: bold 1rem Arial;
+  font: 1rem Arial, sans-serif;
   text-shadow: 0 0 CurrentColor; /* give it that crispy gp style */
   box-sizing: border-box;
-  overflow: hidden;
 }
 
 html, body {height: 100%;}

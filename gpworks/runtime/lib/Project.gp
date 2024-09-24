@@ -703,7 +703,7 @@ method makeGPLogo Project blue {
   initFnS = 100
   setFont 'Verdana' initFnS
   if (not (isClass blue 'Boolean')) {
-    blue = true
+    blue = false
   }
   c = (color 56 191 40)
   if blue {c = (color 40 78 191)}

@@ -3,5 +3,6 @@ body, html {
 }
 
 body {
-  margin: 8px;
+  margin: 8px auto;
+  max-width: 768px;
 }
