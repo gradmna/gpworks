@@ -4,14 +4,17 @@
 	"main": "hosting.js",
 	"license": "SEE LICENSE IN LICENSE.txt",
 	"dependencies": {
+		"ejs": "^3.1.10",
 		"express": "^4.21.0",
+		"jsdom": "^25.0.1",
 		"jszip": "^3.10.1",
+		"markdown-it": "^14.1.0",
 		"request": "^2.88.2"
 	},
-  "engines": {
-    "node": "16"
-  },
-  "scripts": {
-    "start": "node hosting.js"
-  }
+	"engines": {
+		"node": ">=16"
+	},
+	"scripts": {
+		"start": "node hosting.js"
+	}
 }

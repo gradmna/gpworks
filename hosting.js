@@ -5,6 +5,7 @@ express = require("express")
 JSZip = require("jszip")
 fs = require("fs")
 afs = fs.promises
+markdownit = require("markdown-it")
 
 app = express()
 
@@ -80,8 +81,9 @@ async function getMTimeFor(a) {
   return await work(a, new Date(0))
 }
 
-app.get("/pages/readme.html", function(req, res) {
-  
+app.get("/README.html", async function(req, res) {
+  res.header("content-type", "text/html")
+  res.send(markdownit().render(await afs.readFile("README.md", "utf8")))
 })
 
 /*
