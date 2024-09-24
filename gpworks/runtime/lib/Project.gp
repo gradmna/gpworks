@@ -719,7 +719,7 @@ method makeGPLogo Project blue {
   fx += (fx / -2)
   fy += (fy / -2)
   drawString bm 'gpworks' c fx fy
-  setName bm 'gpworks'
+  setName bm 'GP'
   return bm
 }
 
