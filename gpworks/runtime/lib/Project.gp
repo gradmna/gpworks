@@ -714,9 +714,11 @@ method makeGPLogo Project blue {
   A = (fontHeight)
   B = (height txtBmp)
   setFont 'Verdana' ((S * B) / A) // thx chatgpt :pray:
-  fx = 10
-  fy = 0
-  drawString bm 'gpworks' c 0 0
+  fx = (100 - (stringWidth 'gpworks'))
+  fy = (100 - (fontHeight))
+  fx += (fx / -2)
+  fy += (fy / -2)
+  drawString bm 'gpworks' c fx fy
   setName bm 'gpworks'
   return bm
 }

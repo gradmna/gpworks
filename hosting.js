@@ -87,7 +87,7 @@ async function getMTimeFor(a) {
 
 app.get("/README.html", async function(req, res) {
   res.header("content-type", "text/html")
-  var html = markdownit().render(await afs.readFile("README.md", "utf8"))
+  var html = markdownit({html: true}).render(await afs.readFile("README.md", "utf8"))
   var title = new JSDOM(html).window.document.querySelector("body > h1:first-of-type").textContent
   res.render("temp", {html, title})
 })
