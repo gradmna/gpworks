@@ -12,7 +12,7 @@
 
 var script = document.createElement('script');
 script.src = "./importer.js"
-if ((typeof WebAssembly === 'object') && (!(location.search.slice(location.search.indexOf("?") + 1).split("&").some(function(a) {return a.startsWith("js")})))) {
+if ((typeof WebAssembly === 'object') && (!(location.search.slice(location.search.indexOf("?") + 1).split("&").some(function(a) {return a.split("=")[0] === "js"})))) {
 	console.log("WebAssembly supported");
 	script.src += "?wasm"
 } else {
