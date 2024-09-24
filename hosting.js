@@ -80,6 +80,10 @@ async function getMTimeFor(a) {
   return await work(a, new Date(0))
 }
 
+app.get("/pages/readme.html", function(req, res) {
+  
+})
+
 /*
   app.get("/mtime/", async function(req, res) {
     res.header("content-type", "text/plain")
