@@ -435,6 +435,7 @@ function uploadFiles(files) {
 }
 
 function adjustButtonVisibility() {
+  if (/Android/i.test(navigator.userAgent)) queueGPMessage("weAreInAndroid")
 	// Show the appropriate buttons in a mobile or non-mobile browser.
 	var kbdButton = document.getElementById('KeyboardButton');
 	var bsButton = document.getElementById('BackspaceButton');

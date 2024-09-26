@@ -134,6 +134,8 @@ method addTopBarParts ProjectEditor {
 	if (canExportToWeb this) {
 	  add leftItems (textButton this 'Export to Web' 'exportProjectToWeb')
 	}
+  } else {
+  if (browserIsMobile) {add leftItems (textButton this 'Keyboard' (action 'browserPostMessage' 'triggerBtn KeyboardButton'))}
   }
 
   rightItems = (list)
@@ -502,6 +504,10 @@ method checkForBrowserResize ProjectEditor {
   for each (parts pageM) { pageResized (handler each) w h this }
 }
 
+to browserInAndroid {
+  return false
+}
+
 method processBrowserMessages ProjectEditor {
   while true {
 	msg = (browserGetMessage)
@@ -524,6 +530,16 @@ method processBrowserMessages ProjectEditor {
     if ((first parsed) == msg) {
       if (msg == 'iframe') {
         postToResizeFrm this (morph stage)
+      }
+      if (msg == 'weAreInAndroid') {
+        newFunc = (function {return true})
+        setField newFunc 'functionName' 'browserInAndroid'
+        fns = (toList (functions))
+        add fns newFunc
+        setField (topLevelModule) 'functions' (toArray fns)
+        if (not (browserInAndroid)) {
+          error 'smth failed lmfao'
+        }
       }
     }
   }

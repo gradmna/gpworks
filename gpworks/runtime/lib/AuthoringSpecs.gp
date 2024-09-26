@@ -548,7 +548,7 @@ Line 2')
 	  (array ' ' 'self_snapshotCostume'	'snapshot costume : as _' 'str' 'snapshot')
 	  (array ' ' 'self_snapshotStage'	'snapshot stage : as _' 'str' 'snapshot')
 	  (array ' ' 'self_setPinXY'		'set rotation point x _ y _' 'num num' 0 0)
-    (array 'r' 'mkGPLogo' 'create gpworks logo')
+    (array 'r' 'mkGPLogo' 'gpworks logo')
 
 	'Drawing'
 	  (array ' ' 'self_createCostume'	'set width _ height _ : fill _ ' 'num num color' 100 100)

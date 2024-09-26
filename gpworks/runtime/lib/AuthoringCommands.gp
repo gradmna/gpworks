@@ -64,7 +64,7 @@ to self_sayNothing { sayNothing (morph (implicitReceiver)) }
 
 to mkGPLogo {
   editor = (findProjectEditor)
-  return (makeGPLogo (getField editor 'project') (getField (owner (morph editor)) 'handler')) (getField  'devMode')
+  return (makeGPLogo (getField editor 'project') (getField (getField (owner (morph editor)) 'handler') 'devMode')) 
 }
 
 to self_moveBy dx dy {

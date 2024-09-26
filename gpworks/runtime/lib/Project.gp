@@ -700,7 +700,7 @@ LpSRkbkP9EADMAqV6OYoZDDohz4G++ARAFGPsWx+VWYhAAAAAElFTkSuQmCC'
 method makeGPLogo Project blue {
   bm = (newBitmap 100 100)
   fillRoundedRect (newVectorPen bm) (rect 1 1 99 99) 10 (gray 250) 2 (gray 0)
-  initFnS = 100
+  initFnS = 200
   setFont 'Verdana' initFnS
   if (not (isClass blue 'Boolean')) {
     blue = false
