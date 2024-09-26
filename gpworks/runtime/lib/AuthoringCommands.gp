@@ -62,6 +62,11 @@ to self_goBackBy n { goBackBy (morph (implicitReceiver)) n }
 to self_say s { say (morph (implicitReceiver)) s }
 to self_sayNothing { sayNothing (morph (implicitReceiver)) }
 
+to mkGPLogo {
+  editor = (findProjectEditor)
+  return (makeGPLogo (getField editor 'project') (getField (owner (morph editor)) 'handler')) (getField  'devMode')
+}
+
 to self_moveBy dx dy {
   if (isNil dx) { dx = 0 }
   if (isNil dy) { dy = 0 }
