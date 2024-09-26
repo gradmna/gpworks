@@ -108,6 +108,7 @@ method initialize ProjectEditor aProject {
 // top bar parts
 
 method addTopBarParts ProjectEditor {
+  btns = (global 'activeBtns')
   scale = (global 'scale')
   page = (global 'page')
   space = (15 * scale)
@@ -134,8 +135,13 @@ method addTopBarParts ProjectEditor {
 	if (canExportToWeb this) {
 	  add leftItems (textButton this 'Export to Web' 'exportProjectToWeb')
 	}
-  } else {
-  if (browserIsMobile) {add leftItems (textButton this 'Keyboard' (action 'browserPostMessage' 'triggerBtn KeyboardButton'))}
+  }
+  if ((count btns) != 0) {
+    util = (function a {return (contains btns a)})
+    add leftItems space
+    if (util 'kbd') {add leftItems (textButton this 'Keyboard' (action 'browserPostMessage' 'triggerBtn KeyboardButton'))}
+    if (util 'bckspc') {add leftItems (textButton this 'Backspace' (action 'browserPostMessage' 'triggerBtn BackspaceButton'))}
+    if (util 'fullscreen') {add leftItems (textButton this 'Toggle Fullscreen' (action 'browserPostMessage' 'triggerBtn FullscreenButton'))}
   }
 
   rightItems = (list)
@@ -509,6 +515,7 @@ to browserInAndroid {
 }
 
 method processBrowserMessages ProjectEditor {
+  setGlobal 'activeBtns' (list)
   while true {
 	msg = (browserGetMessage)
 	if (isNil msg) { return }
@@ -535,12 +542,17 @@ method processBrowserMessages ProjectEditor {
         newFunc = (function {return true})
         setField newFunc 'functionName' 'browserInAndroid'
         fns = (toList (functions))
+        remove fns (detect (function a {return ((functionName a) == 'browserInAndroid')}) fns)
         add fns newFunc
         setField (topLevelModule) 'functions' (toArray fns)
         if (not (browserInAndroid)) {
           error 'smth failed lmfao'
         }
       }
+    }
+    if ((first parsed) == 'activateBtn') {
+      btns = (global 'activeBtns')
+      add btns (substring msg ((count 'activateBtn') + 2))
     }
   }
   }

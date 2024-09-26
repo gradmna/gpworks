@@ -444,11 +444,13 @@ function adjustButtonVisibility() {
 	var isKindle = /Kindle|Silk|KFAPW|KFARWI|KFASWI|KFFOWI|KFJW|KFMEWI|KFOT|KFS‌​AW|KFSOWI|KFTBW|KFTH‌​W|KFTT|WFFOWI/i.test(userAgent);
 	var isOtherMobile = /Android|webOS|iPhone|iPad|iPod|CriOS|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
 	if (isKindle || isOtherMobile) {
+    queueGPMessage("activateBtn kbd")
 		kbdButton.style.display = 'inline';
 	} else {
 		kbdButton.style.display = 'none';
 	}
 	if (isKindle || /Android/i.test(navigator.userAgent)) {
+    queueGPMessage("activateBtn bckspc")
 		bsButton.style.display = 'inline';
 	} else {
 		bsButton.style.display = 'none';
@@ -456,6 +458,7 @@ function adjustButtonVisibility() {
 	if (/iPhone|iPad|iPod|CriOS/i.test(userAgent)) {
 		fsButton.style.display = 'none';
 	} else {
+    queueGPMessage("activateBtn fullscreen")
 		fsButton.style.display = 'inline';
 	}
 
