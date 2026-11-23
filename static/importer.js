@@ -2,7 +2,7 @@
 	if (!("Module" in window)) Module = {}
 	if (!(Module["preRun"])) Module["preRun"] = []
 	var xhr = new XMLHttpRequest()
-	xhr.open("GET", "/gpworks.zip")
+	xhr.open("GET", "gpworks.zip")
 	xhr.responseType = "arraybuffer"
 	xhr.send()
 	await new Promise(function(reso, reje) {
@@ -32,14 +32,14 @@
 		fils.forEach(function([a, b]) {
 			Module["FS_createDataFile"](a.split("/").slice(0, -1).join("/"), a.split("/").reverse()[0], b, true, true, true)
 		})
-    window.onbeforeunload = function(e) {
-      e.preventDefault()
-      e.returnValue = ""
-      return true
-    }
+		window.onbeforeunload = function(e) {
+			e.preventDefault()
+			e.returnValue = ""
+			return true
+		}
 	})
 	var run = document.createElement("script")
-	run.src = "./gp.js" + new URL(me.src, location.origin).search
+	run.src = "gp.js" + new URL(me.src, location.origin).search
 	document.head.appendChild(run)
 	void(function(a, b) {
 		window.onerror = function(...c) {

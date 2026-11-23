@@ -701,7 +701,7 @@ method makeGPLogo Project blue {
   bm = (newBitmap 100 100)
   fillRoundedRect (newVectorPen bm) (rect 1 1 99 99) 10 (gray 250) 2 (gray 0)
   initFnS = 200
-  setFont 'Verdana' initFnS
+  setFont 'sans-serif' initFnS
   if (not (isClass blue 'Boolean')) {
     blue = false
   }
@@ -713,7 +713,7 @@ method makeGPLogo Project blue {
   S = initFnS
   A = (fontHeight)
   B = (height txtBmp)
-  setFont 'Verdana' ((S * B) / A) // thx chatgpt :pray:
+  setFont 'sans-serif' ((S * B) / A) // thx chatgpt :pray:
   fx = (100 - (stringWidth 'gpworks'))
   fy = (100 - (fontHeight))
   fx += (fx / -2)

@@ -160,13 +160,13 @@ method pageResized Stage {
   scaleToFit this (width page) (height page)
   gotoCenterOf morph (morph page)
   if ('Win' == (platform)) {
-	// workaround for a Windows graphics issue: when resizing a window it seems to clear
-	// some or all textures. this forces them to be updated from the underlying bitmap.
-	for m (allMorphs (morph page)) { costumeChanged m }
+    // workaround for a Windows graphics issue: when resizing a window it seems to clear
+    // some or all textures. this forces them to be updated from the underlying bitmap.
+    for m (allMorphs (morph page)) { costumeChanged m }
   }
   if (and ('iOS' == (platform)) ((height page) > (width page)) (isPresenting this)) {
-	setTop morph (100 * (global 'scale'))
-	showKeyboard true
+    setTop morph (100 * (global 'scale'))
+    showKeyboard true
   }
 }
 

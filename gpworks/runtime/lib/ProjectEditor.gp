@@ -26,6 +26,7 @@ to startProjectEditorFromMorphic {
   editor = (initialize (new 'ProjectEditor') (emptyProject))
   addPart page editor
   pageResized editor
+	normalStageSize editor
   developerModeChanged editor
 }
 
@@ -54,11 +55,12 @@ to openProjectEditor tryRetina devMode {
   }
   goFlag = false
   if ('Browser' == (platform)) {
-	if ('go.html' == (extractCommand (browserURL))) { goFlag = true }
+	//if ('go.html' == (extractCommand (browserURL))) { goFlag = true }
 	//hide (morph (first (getField editor 'rightItems'))) // hide the 'Present' button in browser
 	browserPostMessage (join projName ' loaded') true
   }
   pageResized editor
+	normalStageSize editor
   developerModeChanged editor
   if goFlag { enterPresentation editor }
   startSteppingSafely page goFlag
@@ -83,8 +85,10 @@ method initialize ProjectEditor aProject {
   project = aProject
   lastActivityCheck = 0
   editCount = 0
-  viewerWidth = ((width (global 'page')) - (800 * scale))
-  viewerWidth = (max viewerWidth (400 * scale))
+
+	viewerWidth = ((width (global 'page')) - (800 * scale))
+	viewerWidth = (max viewerWidth (100 * scale))
+
   addTopBarParts this
   scripter = (initialize (new 'Scripter') this)
   addPart morph (morph scripter)
@@ -102,6 +106,9 @@ method initialize ProjectEditor aProject {
   clearProject this
   createInitialClass scripter
   fixLayout this
+
+	normalStageSize this
+
   return this
 }
 
@@ -559,12 +566,11 @@ method processBrowserMessages ProjectEditor {
 }
 
 method postToResizeFrm ProjectEditor st {
-  spaceChar = (stringFromCodePoints (list 32))
   sXy = (joinStrings (map 'toString' (list (left st) (top st))) 'x')
   h = (height (morph (global 'page')))
   h += (0 - (top st))
   sWh = (joinStrings (map 'toString' (list (width st) h)) 'x')
-  browserPostMessage (joinStrings (list 'iframe' 'pos' sXy sWh) spaceChar)
+  browserPostMessage (joinStrings (list 'iframe' 'pos' sXy sWh) ' ')
 }
 
 // media management
@@ -766,10 +772,11 @@ method developerModeChanged ProjectEditor {
 
 method normalStageSize ProjectEditor {
   scale = (global 'scale')
-  viewerWidth = ((width (global 'page')) - (800 * scale))
-  viewerWidth = (max viewerWidth (100 * scale))
+
+	viewerWidth = ((width (global 'page')) - (800 * scale))
+	viewerWidth = (max viewerWidth (100 * scale))
+
   setExtent (morph viewer) viewerWidth nil
-  fixStageLayout this
 }
 
 method pageResized ProjectEditor {
@@ -783,7 +790,9 @@ method pageResized ProjectEditor {
 	viewerWidth = (560 * scale)
 	setExtent (morph viewer) viewerWidth nil
   }
-  viewerWidth = (max viewerWidth (350 * (global 'scale')))
+
+	viewerWidth = (max viewerWidth (100 * scale))
+
   if (not (isVisible morph)) { // presentation mode
 	scaleToFit stage (width page) (height page)
 	gotoCenterOf (morph stage) (morph page)
@@ -819,6 +828,11 @@ method fixLayout ProjectEditor {
   fixStageLayout this
   fixLibraryLayout this
   viewerWidth = (width (morph viewer))
+
+print 'page:' (width (morph (global 'page')))
+print 'viewer:' (width (morph viewer)) (left (morph viewer)) (right (morph viewer))
+print 'stage:' (width (morph stage)) (left (morph stage)) (right (morph stage))
+print 'library:' (width (morph library)) (left (morph library)) (right (morph library))
 }
 
 method fixTopBarLayout ProjectEditor {

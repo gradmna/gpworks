@@ -14,7 +14,7 @@ to block type color opName {
   labelParts = (list (list))
   for i ((argCount) - 2) {add (at labelParts 1) (arg (i + 2))}
   lc = (color 255 255 255)
-  fn = 'Verdana Bold'
+  fn = 'sans-serif Bold'
   if (global 'stealthBlocks') {
     lc = (gray (stealthLevel 255 0))
     if ((red lc) < 200) {
@@ -1190,7 +1190,7 @@ to toBlock commandOrReporter silently {
 }
 
 method labelText Block aString {
-  fontName =  'Verdana Bold'
+  fontName =  'sans-serif Bold'
   fontSize = (11 * scale)
   if (isOneOf aString '+' '-' '*' '/' '×' '−') {  // the last two are unicode multiple and minus
   	fontSize = (12 * scale)
@@ -1206,7 +1206,7 @@ method labelText Block aString {
     if (isNil labelColor) { labelColor = (gray 255) }
   }
   if (true == (global 'alanMode')) {
-	fontName = 'Verdana Bold'
+	fontName = 'sans-serif Bold'
 	labelColor = (gray 0)
   }
   if ('comment' == aString) { labelColor = (gray 80) }

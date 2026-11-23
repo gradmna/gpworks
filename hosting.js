@@ -29,7 +29,7 @@ async function dir2Zip(a) {
 	return zip
 }
 
-app.use(express.static("static"))
+app.use(express.static(`${__dirname}/static`))
 app.use("/examples/", express.static(`${__dirname}/gpworks/Examples`))
 
 app.set("view engine", "ejs")
@@ -64,8 +64,8 @@ app.get("/gp_wasm.wasm", async function(req, res) {
 app.get("/gpworks.zip", async function(req, res) {
 	res.header("content-type", "application/zip")
 	var zip = await dir2Zip("gpworks")
-  zip.file("mtime.txt", (await getMTimeFor("gpworks/runtime/lib")).toUTCString())
-  res.send(await zip.generateAsync({type: "nodebuffer"}))
+	zip.file("mtime.txt", (await getMTimeFor("gpworks/runtime/lib")).toUTCString())
+	res.send(await zip.generateAsync({type: "nodebuffer"}))
 })
 
 async function getMTimeFor(a) {
@@ -80,28 +80,28 @@ async function getMTimeFor(a) {
 				b = b < f.mtime ? f.mtime : b
 			}
 		}
-    return b
+		return b
 	}
-  return await work(a, new Date(0))
+	return await work(a, new Date(0))
 }
 
 app.get("/README.html", async function(req, res) {
-  res.header("content-type", "text/html")
-  var html = markdownit({html: true}).render(await afs.readFile("README.md", "utf8"))
-  var title = new JSDOM(html).window.document.querySelector("body > h1:first-of-type").textContent
-  res.render("temp", {html, title})
+	res.header("content-type", "text/html")
+	var html = markdownit({html: true}).render(await afs.readFile("README.md", "utf8"))
+	var title = new JSDOM(html).window.document.querySelector("body > h1:first-of-type").textContent
+	res.render("temp", {html, title})
 })
 
 /*
-  app.get("/mtime/", async function(req, res) {
-    res.header("content-type", "text/plain")
-    res.send((await getMTimeFor("gpworks/runtime/lib")).toUTCString())
-  })
+	app.get("/mtime/", async function(req, res) {
+		res.header("content-type", "text/plain")
+		res.send((await getMTimeFor("gpworks/runtime/lib")).toUTCString())
+	})
 */
 
 app.get("/help.json", function(req, res) {
-  res.header("content-type", "application/json")
-  res.send({msg: "idfk"})
+	res.header("content-type", "application/json")
+	res.send({msg: "idfk"})
 })
 
 app.listen(8080)
